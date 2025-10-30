@@ -1,5 +1,5 @@
-export interface PaymentProviderPort {
-  charge(
+export abstract class PaymentProviderPort {
+  abstract charge(
     amountCents: number,
     currency: string,
     paymentMethodId: string,

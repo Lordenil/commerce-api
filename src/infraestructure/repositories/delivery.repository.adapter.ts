@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeliveryRepositoryPort } from 'src/domain/ports/inbound/delivery.repository.port';
+import { DeliveryRepositoryPort } from 'src/domain/ports/delivery.repository.port';
 import { Repository } from 'typeorm';
-import { DeliveryOrmEntity } from '../entities/delivery.orm-entity';
+import { DeliveryOrmEntity } from '../db/entities/delivery.orm-entity';
 import { Delivery } from 'src/domain/entities/delivery.entity';
 
 @Injectable()
