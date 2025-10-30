@@ -5,11 +5,13 @@ import { ProductOrmEntity } from 'src/infraestructure/db/entities/product.orm-en
 import { ProductRepositoryAdapter } from 'src/infraestructure/repositories/product.repository.adapter';
 import { ProductController } from './http-api/product/product.controller';
 import { ProductRepositoryPort } from 'src/domain/ports/product.repository.port';
+import { FindProductByIdUseCase } from 'src/application/use-cases/find-product-by-id.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ProductOrmEntity])],
   providers: [
     CreateProductUseCase,
+    FindProductByIdUseCase,
     ProductRepositoryAdapter,
     {
       provide: ProductRepositoryPort,
@@ -17,6 +19,6 @@ import { ProductRepositoryPort } from 'src/domain/ports/product.repository.port'
     },
   ],
   controllers: [ProductController],
-  exports: [CreateProductUseCase],
+  exports: [CreateProductUseCase, FindProductByIdUseCase],
 })
 export class ProductModule {}
