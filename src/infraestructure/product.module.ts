@@ -6,12 +6,14 @@ import { ProductRepositoryAdapter } from 'src/infraestructure/repositories/produ
 import { ProductController } from './http-api/product/product.controller';
 import { ProductRepositoryPort } from 'src/domain/ports/product.repository.port';
 import { FindProductByIdUseCase } from 'src/application/use-cases/find-product-by-id.use-case';
+import { FindProductAllUseCase } from 'src/application/use-cases/find-product-all.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ProductOrmEntity])],
   providers: [
     CreateProductUseCase,
     FindProductByIdUseCase,
+    FindProductAllUseCase,
     ProductRepositoryAdapter,
     {
       provide: ProductRepositoryPort,
