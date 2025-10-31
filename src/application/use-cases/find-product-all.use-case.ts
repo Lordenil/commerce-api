@@ -8,15 +8,17 @@ export class FindProductAllUseCase {
   constructor(private readonly productRepository: ProductRepositoryPort) {}
 
   async execute(): Promise<Result<Product[], Error>> {
+    let products: Product[] | null;
     try {
-      const products = await this.productRepository.findAll();
-      if (products) {
-        return Result.ok(products);
-      } else {
-        return Result.fail(new Error('Products not found'));
-      }
+      products = await this.productRepository.findAll();
     } catch (err: any) {
       return Result.fail(err);
+    }
+
+    if (products) {
+      return Result.ok(products);
+    } else {
+      return Result.fail(new Error('Products not found'));
     }
   }
 }
