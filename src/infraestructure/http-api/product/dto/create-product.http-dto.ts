@@ -11,7 +11,7 @@ export class CreateProductHttpDto {
 
   @IsNumber()
   @IsNotEmpty()
-  priceCents: number;
+  price: number;
 
   @IsString()
   @IsNotEmpty()

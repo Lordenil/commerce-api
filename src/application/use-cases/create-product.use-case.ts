@@ -13,7 +13,7 @@ export class CreateProductUseCase {
       const product = new Product(
         input.name,
         input.sku,
-        input.priceCents,
+        input.price,
         input.currency,
         input.stock,
       );
