@@ -23,6 +23,6 @@ export class DeliveryOrmEntity {
   @Column()
   eta: Date;
 
-  @CreateDateColumn({ name: 'created_at' })
+  @CreateDateColumn({ name: 'created_at', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date = new Date();
 }

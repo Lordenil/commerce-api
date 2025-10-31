@@ -16,9 +16,6 @@ export class CustomerOrmEntity {
   @Column()
   email: string;
 
-  @Column({ name: 'stripe_customer_id', nullable: true })
-  stripeCustomerId?: string;
-
-  @CreateDateColumn({ name: 'created_at' })
+  @CreateDateColumn({ name: 'created_at', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 }
