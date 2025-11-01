@@ -1,4 +1,4 @@
-import { Result } from '../../domain/result';
+import { Result } from 'src/domain/result';
 import { Injectable } from 'src/shared/dependency-injection/injectable';
 import { CustomerRepositoryPort } from 'src/domain/ports/customer.repository.port';
 import { Customer } from 'src/domain/entities/customer.entity';

@@ -1,8 +1,8 @@
 import { ProductRepositoryPort } from 'src/domain/ports/product.repository.port';
-import { Product } from '../../domain/entities/product.entity';
-import { Result } from '../../domain/result';
+import { Result } from 'src/domain/result';
 import { CreateProductDto } from './dto/create-product.dto';
 import { Injectable } from 'src/shared/dependency-injection/injectable';
+import { Product } from 'src/domain/entities/product.entity';
 
 @Injectable()
 export class CreateProductUseCase {
