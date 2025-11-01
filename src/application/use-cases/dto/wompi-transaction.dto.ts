@@ -1,4 +1,4 @@
-export class WompiTransactionDto {
+export class WompiTransactionRequestDto {
   amount_in_cents: number;
   currency: string;
   customer_email: string;
@@ -17,5 +17,13 @@ export class WompiTransactionDto {
     name: string;
     phone_number: string;
     postal_code: string;
+  };
+}
+
+export class WompiTransactionResponseDto {
+  data: {
+    id: string;
+    status: 'APPROVED' | 'DECLINED' | 'VOIDED' | 'ERROR';
+    reference: string;
   };
 }
