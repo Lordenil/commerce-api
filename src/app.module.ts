@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './infraestructure/db/entities/typeorm.config';
 import { ProductModule } from './infraestructure/product.module';
 import { CustomerModule } from './infraestructure/customer.module';
+import { TransactionModule } from './infraestructure/transaction.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { CustomerModule } from './infraestructure/customer.module';
     TypeOrmModule.forRoot(typeOrmConfig),
     ProductModule,
     CustomerModule,
+    TransactionModule,
   ],
 })
 export class AppModule {}

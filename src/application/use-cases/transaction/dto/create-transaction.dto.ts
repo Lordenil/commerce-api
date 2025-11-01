@@ -1,11 +1,14 @@
 export class CreateTransactionDto {
   customerId: string;
   productId: string;
-  amountCents: number;
+  amount: number;
   currency: string;
   paymentMethod: {
     type: string;
-    token: string;
+    numberCard: string;
+    expYear: string;
+    expMonth: string;
+    cvc: string;
     installments: number;
   };
   shippingData: {
@@ -14,6 +17,7 @@ export class CreateTransactionDto {
     city: string;
     postalCode: string;
     country: string;
-    phone: string;
+    phoneNumber: string;
+    email: string;
   };
 }

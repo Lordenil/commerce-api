@@ -1,9 +1,9 @@
 import { Controller, Post, Get, Body, Param } from '@nestjs/common';
-import { CreateProductUseCase } from 'src/application/use-cases/create-product.use-case';
 import { CreateProductHttpDto } from './dto/create-product.http-dto';
-import { FindProductByIdUseCase } from 'src/application/use-cases/find-product-by-id.use-case';
 import { FindProductByIdHttpDto } from './dto/find-product-by-id.http-dto';
-import { FindProductAllUseCase } from 'src/application/use-cases/find-product-all.use-case';
+import { CreateProductUseCase } from 'src/application/use-cases/product/create-product.use-case';
+import { FindProductByIdUseCase } from 'src/application/use-cases/product/find-product-by-id.use-case';
+import { FindProductAllUseCase } from 'src/application/use-cases/product/find-product-all.use-case';
 
 @Controller('products')
 export class ProductController {

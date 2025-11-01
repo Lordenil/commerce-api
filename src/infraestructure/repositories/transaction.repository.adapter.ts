@@ -24,12 +24,14 @@ export class TransactionRepositoryAdapter implements TransactionRepositoryPort {
   async updateStatus(
     id: string,
     status: TransactionStatus,
+    wompiTransactionId?: string,
   ): Promise<Transaction> {
     const transaction = await this.ormRepo.findOne({ where: { id } });
     if (!transaction) {
       throw new Error('Transaction not found');
     }
     transaction.status = status;
+    transaction.wompiTransactionId = wompiTransactionId;
     await this.ormRepo.save(transaction);
     return transaction;
   }

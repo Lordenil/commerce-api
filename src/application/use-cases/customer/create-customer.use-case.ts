@@ -1,8 +1,8 @@
-import { Result } from '../../domain/result';
 import { Injectable } from 'src/shared/dependency-injection/injectable';
 import { CustomerRepositoryPort } from 'src/domain/ports/customer.repository.port';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { Customer } from 'src/domain/entities/customer.entity';
+import { Result } from 'src/domain/result';
 
 @Injectable()
 export class CreateCustomerUseCase {

@@ -9,6 +9,7 @@ export abstract class TransactionRepositoryPort {
   abstract updateStatus(
     id: string,
     status: TransactionStatus,
+    wompiId?: string,
   ): Promise<Transaction>;
   abstract findByWompiId(wompiId: string): Promise<Transaction | null>;
 }
