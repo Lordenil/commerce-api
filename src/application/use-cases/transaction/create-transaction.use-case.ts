@@ -78,8 +78,12 @@ export class CreateTransactionUseCase {
           saved.status = TransactionStatus.PENDING;
           updatedTransaction = await this.transactionRepository.updateStatus(
             saved.id!,
-            TransactionStatus.PENDING,
+            TransactionStatus.APPROVED,
             wompiResponse.data.id,
+          );
+          await this.productRepository.updateStock(
+            product.id!,
+            product.stock - 1,
           );
           break;
 
