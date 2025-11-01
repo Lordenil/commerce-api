@@ -25,4 +25,13 @@ export class ProductRepositoryAdapter implements ProductRepositoryPort {
   async findById(id: string): Promise<Product | null> {
     return await this.ormRepo.findOne({ where: { id } });
   }
+
+  async updateStock(id: string, stock: number): Promise<Product> {
+    const product = await this.ormRepo.findOne({ where: { id } });
+    if (!product) {
+      throw new Error('Product not found');
+    }
+    product.stock = stock;
+    return await this.ormRepo.save(product);
+  }
 }
