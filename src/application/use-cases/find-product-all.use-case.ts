@@ -1,27 +1,24 @@
 import { ProductRepositoryPort } from 'src/domain/ports/product.repository.port';
 import { Product } from '../../domain/entities/product.entity';
 import { Result } from '../../domain/result';
-import { CreateProductDto } from './dto/create-product.dto';
 import { Injectable } from 'src/shared/dependency-injection/injectable';
 
 @Injectable()
-export class CreateProductUseCase {
+export class FindProductAllUseCase {
   constructor(private readonly productRepository: ProductRepositoryPort) {}
 
-  async execute(input: CreateProductDto): Promise<Result<Product, Error>> {
+  async execute(): Promise<Result<Product[], Error>> {
+    let products: Product[] | null;
     try {
-      const product = new Product(
-        input.name,
-        input.sku,
-        input.price,
-        input.currency,
-        input.stock,
-      );
-
-      const saved = await this.productRepository.save(product);
-      return Result.ok(saved);
+      products = await this.productRepository.findAll();
     } catch (err: any) {
       return Result.fail(err);
+    }
+
+    if (products) {
+      return Result.ok(products);
+    } else {
+      return Result.fail(new Error('Products not found'));
     }
   }
 }

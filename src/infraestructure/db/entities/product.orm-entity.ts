@@ -16,8 +16,8 @@ export class ProductOrmEntity {
   @Column()
   sku: string;
 
-  @Column({ type: 'int', name: 'price_cents' })
-  priceCents: number;
+  @Column({ type: 'int', name: 'price' })
+  price: number;
 
   @Column()
   currency: string;
@@ -25,6 +25,6 @@ export class ProductOrmEntity {
   @Column({ type: 'int' })
   stock: number;
 
-  @CreateDateColumn({ name: 'created_at' })
+  @CreateDateColumn({ name: 'created_at', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 }

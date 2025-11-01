@@ -14,8 +14,11 @@ export class TransactionOrmEntity {
   @Column({ name: 'customer_id' })
   customerId: string;
 
-  @Column({ name: 'amount_cents' })
-  amountCents: number;
+  @Column({ name: 'product_id' })
+  productId: string;
+
+  @Column({ name: 'amount' })
+  amount: number;
 
   @Column()
   currency: string;
@@ -35,6 +38,9 @@ export class TransactionOrmEntity {
   @Column({ type: 'jsonb', nullable: true })
   metadata: Record<string, any>;
 
-  @CreateDateColumn({ name: 'created_at' })
+  @Column({ name: 'wompi_transaction_id', nullable: true })
+  wompiTransactionId?: string;
+
+  @CreateDateColumn({ name: 'created_at', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 }

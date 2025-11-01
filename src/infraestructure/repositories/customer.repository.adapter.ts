@@ -12,10 +12,14 @@ export class CustomerRepositoryAdapter implements CustomerRepositoryPort {
     private readonly ormRepo: Repository<CustomerOrmEntity>,
   ) {}
 
+  async findByEmail(email: string): Promise<Customer | null> {
+    return await this.ormRepo.findOne({ where: { email } });
+  }
+
   async save(customer: Customer): Promise<Customer> {
-    const entity = this.ormRepo.create(customer);
-    const saved = await this.ormRepo.save(entity);
-    return saved;
+    const ormEntity = this.ormRepo.create(customer);
+    await this.ormRepo.save(ormEntity);
+    return ormEntity;
   }
 
   async findAll(): Promise<Customer[]> {

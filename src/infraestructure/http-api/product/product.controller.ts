@@ -3,17 +3,26 @@ import { CreateProductUseCase } from 'src/application/use-cases/create-product.u
 import { CreateProductHttpDto } from './dto/create-product.http-dto';
 import { FindProductByIdUseCase } from 'src/application/use-cases/find-product-by-id.use-case';
 import { FindProductByIdHttpDto } from './dto/find-product-by-id.http-dto';
+import { FindProductAllUseCase } from 'src/application/use-cases/find-product-all.use-case';
 
 @Controller('products')
 export class ProductController {
   constructor(
     private readonly createProductUseCase: CreateProductUseCase,
     private readonly findProductByIdUseCase: FindProductByIdUseCase,
+    private readonly findProductAllUseCase: FindProductAllUseCase,
   ) {}
 
   @Post()
   async create(@Body() body: CreateProductHttpDto) {
     const result = await this.createProductUseCase.execute(body);
+    if (!result.isSuccess) throw result.error;
+    return result.value;
+  }
+
+  @Get()
+  async getAll() {
+    const result = await this.findProductAllUseCase.execute();
     if (!result.isSuccess) throw result.error;
     return result.value;
   }
