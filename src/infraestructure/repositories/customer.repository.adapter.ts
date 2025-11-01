@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CustomerRepositoryPort } from 'src/domain/ports/inbound/customer.repository.port';
 import { Repository } from 'typeorm';
-import { CustomerOrmEntity } from '../entities/customer.orm-entity';
+import { CustomerOrmEntity } from '../db/entities/customer.orm-entity';
 import { Customer } from 'src/domain/entities/customer.entity';
+import { CustomerRepositoryPort } from 'src/domain/ports/customer.repository.port';
 
 @Injectable()
 export class CustomerRepositoryAdapter implements CustomerRepositoryPort {

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PaymentProviderPort } from 'src/domain/ports/inbound/payment-provider.port';
+import { PaymentProviderPort } from 'src/domain/ports/payment-provider.port';
 import Stripe from 'stripe';
 
 @Injectable()

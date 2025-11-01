@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TransactionRepositoryPort } from 'src/domain/ports/inbound/transaction.repository.port';
+import { TransactionRepositoryPort } from 'src/domain/ports/transaction.repository.port';
 import { Repository } from 'typeorm';
-import { TransactionOrmEntity } from '../entities/transaction.orm-entity';
+import { TransactionOrmEntity } from '../db/entities/transaction.orm-entity';
 import { Transaction } from 'src/domain/entities/transaction.entity';
 
 @Injectable()
