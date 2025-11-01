@@ -23,7 +23,19 @@ export class CreateTransactionHttpDto {
 
   @IsString()
   @IsNotEmpty()
-  token: string;
+  numberCard: string;
+
+  @IsString()
+  @IsNotEmpty()
+  expYear: string;
+
+  @IsString()
+  @IsNotEmpty()
+  expMonth: string;
+
+  @IsString()
+  @IsNotEmpty()
+  cvc: string;
 
   @IsNotEmpty()
   @IsNumber({ maxDecimalPlaces: 0 })

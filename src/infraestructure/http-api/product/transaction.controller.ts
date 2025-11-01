@@ -17,8 +17,11 @@ export class TransactionController {
       currency: body.currency,
       paymentMethod: {
         type: body.type,
-        token: body.token,
         installments: body.installments,
+        numberCard: body.numberCard,
+        expMonth: body.expMonth,
+        expYear: body.expYear,
+        cvc: body.cvc,
       },
       shippingData: {
         fullName: body.fullName,
@@ -26,7 +29,7 @@ export class TransactionController {
         city: body.city,
         postalCode: body.postalCode,
         country: body.country,
-        phone: body.phone,
+        phoneNumber: body.phone,
         email: body.email,
       },
     });

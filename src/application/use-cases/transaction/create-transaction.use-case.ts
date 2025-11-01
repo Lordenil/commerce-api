@@ -11,6 +11,7 @@ import { CustomerRepositoryPort } from 'src/domain/ports/customer.repository.por
 import { WompiRepositoryPort } from 'src/domain/ports/wompi.repository.port';
 import { Customer } from 'src/domain/entities/customer.entity';
 import { ResponseTransactionDto } from './dto/response-transaction.dto';
+import { WompiTransactionRequestDto } from '../dto/wompi-transaction.dto';
 
 @Injectable()
 export class CreateTransactionUseCase {
@@ -45,8 +46,8 @@ export class CreateTransactionUseCase {
         input.amount,
         input.currency,
         TransactionStatus.PENDING,
-        input.paymentMethod.token,
-        input.paymentMethod.token.slice(-4),
+        input.paymentMethod.type,
+        input.paymentMethod.numberCard.slice(-4),
         'credit_card',
         undefined,
         {
@@ -65,7 +66,7 @@ export class CreateTransactionUseCase {
 
       const saved = await this.transactionRepository.save(transaction);
 
-      const wompiRequest = this.buildWompiRequest(saved, customer, saved.id!);
+      const wompiRequest = this.buildWompiRequest(input, customer, saved.id!);
 
       const wompiResponse =
         await this.wompiRepository.createTransaction(wompiRequest);
@@ -73,6 +74,15 @@ export class CreateTransactionUseCase {
       let updatedTransaction: Transaction;
 
       switch (wompiResponse.data.status) {
+        case 'PENDING':
+          saved.status = TransactionStatus.PENDING;
+          updatedTransaction = await this.transactionRepository.updateStatus(
+            saved.id!,
+            TransactionStatus.PENDING,
+            wompiResponse.data.id,
+          );
+          break;
+
         case 'APPROVED':
           saved.status = TransactionStatus.APPROVED;
           updatedTransaction = await this.transactionRepository.updateStatus(
@@ -111,30 +121,34 @@ export class CreateTransactionUseCase {
   }
 
   private buildWompiRequest(
-    transaction: Transaction,
+    transaction: CreateTransactionDto,
     customer: Customer,
     transactionId: string,
   ) {
-    return {
-      amount_in_cents: Math.round(transaction.amount * 100),
+    const wompiRequest: WompiTransactionRequestDto = {
+      amountInCents: Math.round(transaction.amount * 100),
+      customerEmail: customer.email,
       currency: transaction.currency,
-      customer_email: customer.email,
-      payment_method: {
-        type: 'credit_card',
-        token: transaction.paymentMethodId,
+      paymentMethod: {
+        type: 'CARD',
+        numberCard: transaction.paymentMethod.numberCard,
+        expMonth: transaction.paymentMethod.expMonth,
+        expYear: transaction.paymentMethod.expYear,
+        cvc: transaction.paymentMethod.cvc,
         installments: 1,
       },
       reference: transactionId,
-      shipping_address: {
-        address_line_1: 'cra 123',
-        country: 'Colombia',
-        region: 'Antioquia',
-        city: 'Caldas',
-        name: customer.name,
-        phone_number: '',
-        postal_code: '',
+      shippingAddress: {
+        name: transaction.shippingData.fullName,
+        addressLine1: transaction.shippingData.address,
+        country: transaction.shippingData.country,
+        region: '',
+        city: transaction.shippingData.city,
+        phoneNumber: transaction.shippingData.phoneNumber,
+        postalCode: transaction.shippingData.postalCode,
       },
     };
+    return wompiRequest;
   }
 
   private toTransactionResultDto(
