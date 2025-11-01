@@ -1,9 +1,9 @@
 import { Controller, Post, Body, Get, Param } from '@nestjs/common';
-import { CreateCustomerUseCase } from 'src/application/use-cases/create-customer.use-case';
 import { CreateCustomerHttpDto } from './dto/create-customer.http-dto';
 import { FindCustomerByIdHttpDto } from './dto/find-customer-by-id.http-dto';
-import { FindCustomerByIdUseCase } from 'src/application/use-cases/find-customer-by-id.use-case';
-import { FindCustomerAllUseCase } from 'src/application/use-cases/find-customer-all.use-case';
+import { CreateCustomerUseCase } from 'src/application/use-cases/customer/create-customer.use-case';
+import { FindCustomerByIdUseCase } from 'src/application/use-cases/customer/find-customer-by-id.use-case';
+import { FindCustomerAllUseCase } from 'src/application/use-cases/customer/find-customer-all.use-case';
 
 @Controller('customers')
 export class CustomerController {
