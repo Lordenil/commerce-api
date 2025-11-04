@@ -14,6 +14,9 @@ export class ProductOrmEntity {
   name: string;
 
   @Column()
+  description: string;
+
+  @Column()
   sku: string;
 
   @Column({ type: 'int', name: 'price' })

@@ -12,6 +12,7 @@ export class CreateProductUseCase {
     try {
       const product = new Product(
         input.name,
+        input.description,
         input.sku,
         input.price,
         input.currency,

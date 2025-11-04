@@ -7,6 +7,10 @@ export class CreateProductHttpDto {
 
   @IsString()
   @IsNotEmpty()
+  description: string;
+
+  @IsString()
+  @IsNotEmpty()
   sku: string;
 
   @IsNumber()

@@ -19,5 +19,6 @@ export class CreateTransactionDto {
     country: string;
     phoneNumber: string;
     email: string;
+    region: string;
   };
 }
