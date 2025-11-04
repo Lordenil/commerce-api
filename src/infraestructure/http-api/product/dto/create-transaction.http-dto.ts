@@ -63,6 +63,10 @@ export class CreateTransactionHttpDto {
 
   @IsString()
   @IsNotEmpty()
+  region: string;
+
+  @IsString()
+  @IsNotEmpty()
   phone: string;
 
   @IsEmail()

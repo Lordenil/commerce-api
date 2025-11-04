@@ -146,7 +146,7 @@ export class CreateTransactionUseCase {
         name: transaction.shippingData.fullName,
         addressLine1: transaction.shippingData.address,
         country: transaction.shippingData.country,
-        region: '',
+        region: transaction.shippingData.region,
         city: transaction.shippingData.city,
         phoneNumber: transaction.shippingData.phoneNumber,
         postalCode: transaction.shippingData.postalCode,

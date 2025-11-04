@@ -30,6 +30,7 @@ export class TransactionController {
         postalCode: body.postalCode,
         country: body.country,
         phoneNumber: body.phone,
+        region: body.region,
         email: body.email,
       },
     });
