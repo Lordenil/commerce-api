@@ -67,15 +67,26 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": "./",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
+    "modulePaths": [
+      "<rootDir>"
     ],
-    "coverageDirectory": "../coverage",
+    "collectCoverageFrom": [
+      "src/**/*.(t|j)s",
+      "!**/*.(controller|module|entity|dto|).(t|j)s",
+      "!src/**/types",
+      "!src/**/interfaces",
+      "!src/**/*.http-dto.ts",
+      "!src/**/injectable.ts",
+      "!src/**/typeorm.config.ts",
+      "!**/index.ts",
+      "!src/main.ts"
+    ],
+    "coverageDirectory": "./coverage",
     "testEnvironment": "node"
   }
 }

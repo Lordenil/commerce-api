@@ -21,4 +21,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
     DeliveryOrmEntity,
   ],
   synchronize: process.env.SYNCHRONIZE === 'true',
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
 };
