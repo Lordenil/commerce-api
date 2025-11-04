@@ -110,7 +110,7 @@ export class WompiRepositoryAdapter implements WompiRepositoryPort {
           name: request.shippingAddress.name,
           address_line_1: request.shippingAddress.addressLine1,
           country: request.shippingAddress.country,
-          region: 'Antioquia',
+          region: request.shippingAddress.region,
           city: request.shippingAddress.city,
           phone_number: request.shippingAddress.phoneNumber,
           postal_code: request.shippingAddress.postalCode,
