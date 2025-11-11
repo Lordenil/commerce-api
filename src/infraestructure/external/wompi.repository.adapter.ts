@@ -104,6 +104,12 @@ export class WompiRepositoryAdapter implements WompiRepositoryPort {
           token: token['data']['id'],
           installments: request.paymentMethod.installments || 1,
         },
+        taxes: [
+          {
+            type: request.taxes.type,
+            amount_in_cents: request.taxes.amount_in_cents,
+          },
+        ],
         reference: request.reference,
         signature: integrityKey,
         shipping_address: {

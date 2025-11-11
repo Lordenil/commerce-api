@@ -10,6 +10,10 @@ export class WompiTransactionRequestDto {
     expYear: string;
     cvc: string;
   };
+  taxes: {
+    type: string;
+    amount_in_cents: number;
+  };
   reference: string;
   shippingAddress: {
     addressLine1: string;

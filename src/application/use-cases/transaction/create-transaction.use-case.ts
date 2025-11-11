@@ -129,8 +129,9 @@ export class CreateTransactionUseCase {
     customer: Customer,
     transactionId: string,
   ) {
+    const taxValue = transaction.amount * 0.19;
     const wompiRequest: WompiTransactionRequestDto = {
-      amountInCents: Math.round(transaction.amount * 100),
+      amountInCents: Math.round((transaction.amount + taxValue) * 100),
       customerEmail: customer.email,
       currency: transaction.currency,
       paymentMethod: {
@@ -142,6 +143,10 @@ export class CreateTransactionUseCase {
         installments: 1,
       },
       reference: transactionId,
+      taxes: {
+        type: 'VAT',
+        amount_in_cents: Math.round(taxValue * 100),
+      },
       shippingAddress: {
         name: transaction.shippingData.fullName,
         addressLine1: transaction.shippingData.address,
